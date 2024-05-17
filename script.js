@@ -40,7 +40,9 @@ function mostrarValor() {
 }
 
 function somaDosDados() {
+    if (fichas <= 0) return alert("Suas fichas acabaram! Reinicie o jogo para continuar.")
     let valorApostado = document.getElementById("aposta").value;
+    if (valorApostado > fichas) return alert("O valor apostado não pode ser maior do que a quantidade de fichas.");
     const resultado = document.getElementById("resultado");
 
     const dado1 = jogarDado('dado1');
@@ -49,24 +51,24 @@ function somaDosDados() {
 
     const soma = dado1 + dado2;
 
-    console.log("Valor apostado: " + valorApostado);
-
     if (soma == 7) {
         bonus = valorApostado * 2;
         fichas = fichas + bonus;
-        resultado.innerText = soma
+        resultado.innerText = 'Soma: ' + soma;
         document.getElementById("valorFichas").innerText = "Fichas: " + fichas;
-        alert(`A soma dos dados foi: ${soma}. Você ganhou ${bonus} fichas`);
+        document.getElementById("bonus").innerText = `Você ganhou ${bonus} fichas`;
     } else if (soma == 2 || soma == 12) {
         bonus = valorApostado * 3;
         fichas = fichas + bonus;
-        resultado.innerText = soma
+        resultado.innerText = 'Soma: ' + soma;
         document.getElementById("valorFichas").innerText = "Fichas: " + fichas;
-        alert(`A soma dos dados foi: ${soma}. Você ganhou ${bonus} fichas`);
+        document.getElementById("bonus").innerText = `Você ganhou ${bonus} fichas`;
     } else {
         fichas = fichas - valorApostado;
-        resultado.innerText = soma
+        resultado.innerText = 'Soma: ' + soma;
         document.getElementById("valorFichas").innerText = "Fichas: " + fichas;
+        document.getElementById("bonus").innerText = `Não ganhou nada!`;
+        if (fichas <= 0) return alert("Suas fichas acabaram! Reinicie o jogo para continuar.");
     }
 }
 

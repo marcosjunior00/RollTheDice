@@ -51,3 +51,15 @@ button {
 .dado {
     font-size: 28px;
 }
+
+#resultados {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+#valorFichas {
+    position: fixed;
+    top: 18px;
+    right: 12px;
+}
