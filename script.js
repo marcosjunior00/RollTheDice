@@ -42,14 +42,16 @@ function mostrarValor() {
 function somaDosDados() {
     if (fichas <= 0) return alert("Suas fichas acabaram! Reinicie o jogo para continuar.")
     let valorApostado = document.getElementById("aposta").value;
+    if (!valorApostado) return alert("Digite um valor válido para a aposta.");
+    if (valorApostado < 10) return alert("A aposta mínima é de 10 fichas");
     if (valorApostado > fichas) return alert("O valor apostado não pode ser maior do que a quantidade de fichas.");
-    const resultado = document.getElementById("resultado");
+    let resultado = document.getElementById("resultado");
 
-    const dado1 = jogarDado('dado1');
+    let dado1 = jogarDado('dado1');
 
-    const dado2 = jogarDado('dado2');
+    let dado2 = jogarDado('dado2');
 
-    const soma = dado1 + dado2;
+    let soma = dado1 + dado2;
 
     if (soma == 7) {
         bonus = valorApostado * 2;
@@ -68,11 +70,23 @@ function somaDosDados() {
         resultado.innerText = 'Soma: ' + soma;
         document.getElementById("valorFichas").innerText = "Fichas: " + fichas;
         document.getElementById("bonus").innerText = `Não ganhou nada!`;
-        if (fichas <= 0) return alert("Suas fichas acabaram! Reinicie o jogo para continuar.");
+        if (fichas <= 0) alert("Suas fichas acabaram! Reinicie o jogo para continuar.");
     }
 }
 
-document.getElementById('jogar').addEventListener('click', (event) => {
+function reiniciar() {
+    fichas = 100;
+    document.getElementById("aposta").value = '';
+    document.getElementById("valorFichas").innerText = "Fichas: " + fichas;
+    document.getElementById("bonus").innerText = '';
+    document.getElementById("resultado").innerText = '';
+}
+
+document.getElementById('jogar').addEventListener('click', function (event) {
     event.preventDefault();
     somaDosDados();
+})
+
+document.getElementById('reiniciar').addEventListener('click', function () {
+    reiniciar();
 })

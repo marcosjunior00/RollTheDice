@@ -61,5 +61,9 @@ button {
 #valorFichas {
     position: fixed;
     top: 18px;
-    right: 12px;
+    left: 12px;
+}
+
+#reiniciar {
+    margin-top: 12px;
 }
